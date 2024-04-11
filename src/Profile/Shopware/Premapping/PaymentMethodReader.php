@@ -113,7 +113,7 @@ class PaymentMethodReader extends AbstractPremappingReader
                 $uuid = '';
             }
 
-            $entityData[] = new PremappingEntityStruct($data['id'], $description, $uuid);
+            $entityData[] = new PremappingEntityStruct((string) $data['id'], $description, $uuid);
         }
 
         $uuid = '';

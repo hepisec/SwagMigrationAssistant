@@ -26,7 +26,7 @@ abstract class ShopwareConverter extends Converter
 
     public function getSourceIdentifier(array $data): string
     {
-        return $data['id'];
+        return (string) $data['id'];
     }
 
     /**

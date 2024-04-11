@@ -107,7 +107,7 @@ class MigrationDataConverter implements MigrationDataConverterInterface
                     $runUuid,
                     $dataSet::getEntity(),
                     $exception,
-                    $item['id'] ?? null
+                    $item['id'] ? (string) $item['id'] : null
                 ));
 
                 $createData[] = [

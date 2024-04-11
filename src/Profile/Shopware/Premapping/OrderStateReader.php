@@ -98,7 +98,7 @@ class OrderStateReader extends AbstractPremappingReader
                     $description = $data['id'];
                 }
 
-                $entityData[] = new PremappingEntityStruct($data['id'], $description, $uuid);
+                $entityData[] = new PremappingEntityStruct((string) $data['id'], $description, $uuid);
             }
         }
         \usort($entityData, function (PremappingEntityStruct $item1, PremappingEntityStruct $item2) {
