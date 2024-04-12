@@ -76,7 +76,7 @@ abstract class CustomerConverter extends ShopwareConverter
 
     public function getSourceIdentifier(array $data): string
     {
-        return $data['id'];
+        return (string) $data['id'];
     }
 
     public function convert(
@@ -95,7 +95,7 @@ abstract class CustomerConverter extends ShopwareConverter
             $this->loggingService->addLogEntry(new EmptyNecessaryFieldRunLog(
                 $this->runId,
                 DefaultEntities::CUSTOMER,
-                $data['id'],
+                (string) $data['id'],
                 \implode(',', $fields)
             ));
 
@@ -106,7 +106,7 @@ abstract class CustomerConverter extends ShopwareConverter
             $this->loggingService->addLogEntry(new InvalidEmailAddressLog(
                 $this->runId,
                 DefaultEntities::CUSTOMER,
-                $data['id'],
+                (string) $data['id'],
                 $data['email']
             ));
 
@@ -128,12 +128,12 @@ abstract class CustomerConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::CUSTOMER,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
 
-        $this->oldCustomerId = $data['id'];
+        $this->oldCustomerId = (string) $data['id'];
 
         $converted = [];
         $converted['id'] = $this->mainMapping['entityUuid'];
@@ -144,7 +144,7 @@ abstract class CustomerConverter extends ShopwareConverter
             $mapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::SALES_CHANNEL,
-                $data['subshopID'],
+                (string) $data['subshopID'],
                 $this->context
             );
 
@@ -188,7 +188,7 @@ abstract class CustomerConverter extends ShopwareConverter
         $mapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::CUSTOMER_GROUP,
-            $data['customerGroupId'],
+            (string) $data['customerGroupId'],
             $context
         );
         if ($mapping === null) {
@@ -323,7 +323,7 @@ abstract class CustomerConverter extends ShopwareConverter
         $paymentMethodMapping = $this->mappingService->getMapping(
             $this->connectionId,
             PaymentMethodReader::getMappingName(),
-            $originalData['id'],
+            (string) $originalData['id'],
             $this->context
         );
 
@@ -331,7 +331,7 @@ abstract class CustomerConverter extends ShopwareConverter
             $this->loggingService->addLogEntry(new UnknownEntityLog(
                 $this->runId,
                 DefaultEntities::PAYMENT_METHOD,
-                $originalData['id'],
+                (string) $originalData['id'],
                 DefaultEntities::CUSTOMER,
                 $this->oldCustomerId
             ));
@@ -355,7 +355,7 @@ abstract class CustomerConverter extends ShopwareConverter
                 $this->loggingService->addLogEntry(new EmptyNecessaryFieldRunLog(
                     $this->runId,
                     DefaultEntities::CUSTOMER_ADDRESS,
-                    $address['id'],
+                    (string) $address['id'],
                     \implode(',', $fields)
                 ));
 
@@ -370,7 +370,7 @@ abstract class CustomerConverter extends ShopwareConverter
             $addressMapping = $this->mappingService->getOrCreateMapping(
                 $this->connectionId,
                 DefaultEntities::CUSTOMER_ADDRESS,
-                $address['id'],
+                (string) $address['id'],
                 $this->context
             );
             $newAddress['id'] = $addressMapping['entityUuid'];
@@ -448,7 +448,7 @@ abstract class CustomerConverter extends ShopwareConverter
         $countryUuid = null;
         if (isset($oldCountryData['countryiso'], $oldCountryData['iso3'])) {
             $countryUuid = $this->mappingService->getCountryUuid(
-                $oldCountryData['id'],
+                (string) $oldCountryData['id'],
                 $oldCountryData['countryiso'],
                 $oldCountryData['iso3'],
                 $this->connectionId,
@@ -462,7 +462,7 @@ abstract class CustomerConverter extends ShopwareConverter
             $mapping = $this->mappingService->getOrCreateMapping(
                 $this->connectionId,
                 DefaultEntities::COUNTRY,
-                $oldCountryData['id'],
+                (string) $oldCountryData['id'],
                 $this->context
             );
             $country['id'] = $mapping['entityUuid'];
@@ -524,7 +524,7 @@ abstract class CustomerConverter extends ShopwareConverter
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::COUNTRY_STATE,
-            $oldStateData['id'],
+            (string) $oldStateData['id'],
             $this->context
         );
         $state['id'] = $mapping['entityUuid'];

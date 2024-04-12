@@ -60,7 +60,7 @@ abstract class NumberRangeConverter extends ShopwareConverter
                 new UnsupportedNumberRangeTypeLog(
                     $migrationContext->getRunUuid(),
                     DefaultEntities::NUMBER_RANGE,
-                    $data['id'],
+                    (string) $data['id'],
                     $data['name']
                 )
             );
@@ -82,7 +82,7 @@ abstract class NumberRangeConverter extends ShopwareConverter
             $this->loggingService->addLogEntry(new EmptyNecessaryFieldRunLog(
                 $migrationContext->getRunUuid(),
                 DefaultEntities::NUMBER_RANGE,
-                $data['id'],
+                (string) $data['id'],
                 'typeId'
             ));
 
@@ -130,7 +130,7 @@ abstract class NumberRangeConverter extends ShopwareConverter
         $mapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::NUMBER_RANGE,
-            $data['id'],
+            (string) $data['id'],
             $context
         );
 
@@ -142,13 +142,13 @@ abstract class NumberRangeConverter extends ShopwareConverter
 
         // use global number range uuid for products if available
         if ($data['name'] === 'articleordernumber') {
-            $this->mappingService->getNumberRangeUuid('product', $data['id'], $this->checksum, $migrationContext, $context);
+            $this->mappingService->getNumberRangeUuid('product', (string) $data['id'], $this->checksum, $migrationContext, $context);
         }
 
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::NUMBER_RANGE,
-            $data['id'],
+            (string) $data['id'],
             $context,
             $this->checksum
         );

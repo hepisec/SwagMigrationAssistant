@@ -43,7 +43,7 @@ abstract class CustomerGroupConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::CUSTOMER_GROUP,
-            $data['id'],
+            (string) $data['id'],
             $context,
             $this->checksum
         );

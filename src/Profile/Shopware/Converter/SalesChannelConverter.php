@@ -55,7 +55,7 @@ abstract class SalesChannelConverter extends ShopwareConverter
         $this->migrationContext = $migrationContext;
         $this->context = $context;
         $this->mainLocale = $data['_locale'];
-        $this->oldIdentifier = $data['id'];
+        $this->oldIdentifier = (string) $data['id'];
 
         $connection = $migrationContext->getConnection();
         $this->connectionId = '';
@@ -67,7 +67,7 @@ abstract class SalesChannelConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::SALES_CHANNEL,
-            $data['id'],
+            (string) $data['id'],
             $context,
             $this->checksum
         );
@@ -80,7 +80,7 @@ abstract class SalesChannelConverter extends ShopwareConverter
         $customerGroupMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::CUSTOMER_GROUP,
-            $data['customer_group_id'],
+            (string) $data['customer_group_id'],
             $context
         );
 
@@ -89,7 +89,7 @@ abstract class SalesChannelConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $migrationContext->getRunUuid(),
                     DefaultEntities::CUSTOMER_GROUP,
-                    $data['customer_group_id'],
+                    (string) $data['customer_group_id'],
                     DefaultEntities::SALES_CHANNEL
                 )
             );
@@ -158,7 +158,7 @@ abstract class SalesChannelConverter extends ShopwareConverter
         $categoryMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::CATEGORY,
-            $data['category_id'],
+            (string) $data['category_id'],
             $context
         );
 
@@ -167,7 +167,7 @@ abstract class SalesChannelConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $migrationContext->getRunUuid(),
                     DefaultEntities::CATEGORY,
-                    $data['category_id'],
+                    (string) $data['category_id'],
                     DefaultEntities::SALES_CHANNEL
                 )
             );
@@ -422,7 +422,7 @@ abstract class SalesChannelConverter extends ShopwareConverter
             $mapping = $this->mappingService->getOrCreateMapping(
                 $this->connectionId,
                 DefaultEntities::SALES_CHANNEL,
-                $shop['id'],
+                (string) $shop['id'],
                 $this->context,
                 null,
                 null,

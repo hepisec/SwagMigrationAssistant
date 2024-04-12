@@ -68,7 +68,7 @@ abstract class CategoryConverter extends ShopwareConverter
     ): ConvertStruct {
         $this->generateChecksum($data);
         $this->context = $context;
-        $this->oldCategoryId = $data['id'];
+        $this->oldCategoryId = (string) $data['id'];
         $this->runId = $migrationContext->getRunUuid();
         $this->migrationContext = $migrationContext;
 
@@ -102,7 +102,7 @@ abstract class CategoryConverter extends ShopwareConverter
             $parentMapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::CATEGORY,
-                $data['parent'],
+                (string) $data['parent'],
                 $this->context
             );
 
@@ -126,7 +126,7 @@ abstract class CategoryConverter extends ShopwareConverter
             $previousSiblingMapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::CATEGORY,
-                $data['previousSiblingId'],
+                (string) $data['previousSiblingId'],
                 $this->context
             );
 
@@ -287,7 +287,7 @@ abstract class CategoryConverter extends ShopwareConverter
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::MEDIA,
-            $media['id'],
+            (string) $media['id'],
             $this->context
         );
 
@@ -317,7 +317,7 @@ abstract class CategoryConverter extends ShopwareConverter
         $albumMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::MEDIA_FOLDER,
-            $media['albumID'],
+            (string) $media['albumID'],
             $this->context
         );
 

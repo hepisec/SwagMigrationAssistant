@@ -98,7 +98,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
         $this->generateChecksum($data);
         $this->context = $context;
         $this->runId = $migrationContext->getRunUuid();
-        $this->oldShippingMethod = $data['id'];
+        $this->oldShippingMethod = (string) $data['id'];
         $this->mainLocale = $data['_locale'];
 
         $connection = $migrationContext->getConnection();
@@ -111,7 +111,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::SHIPPING_METHOD,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
@@ -299,7 +299,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
         $customerGroupMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::CUSTOMER_GROUP,
-            $customerGroupId,
+            (string) $customerGroupId,
             $this->context
         );
 
@@ -398,7 +398,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
         $salesChannelMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::SALES_CHANNEL,
-            $shopId,
+            (string) $shopId,
             $this->context
         );
 
@@ -499,7 +499,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
         $salesChannelMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::SALES_CHANNEL,
-            $shopId,
+            (string) $shopId,
             $this->context
         );
 
@@ -513,7 +513,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
         $customerGroupMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::CUSTOMER_GROUP,
-            $customerGroupId,
+            (string) $customerGroupId,
             $this->context
         );
 
@@ -655,7 +655,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $mapping = $this->mappingService->getOrCreateMapping(
                 $this->connectionId,
                 DefaultEntities::SHIPPING_METHOD_PRICE,
-                $shippingCost['id'],
+                (string) $shippingCost['id'],
                 $this->context
             );
             $cost['id'] = $mapping['entityUuid'];
@@ -677,7 +677,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
                 $this->loggingService->addLogEntry(new EmptyNecessaryFieldRunLog(
                     $this->runId,
                     DefaultEntities::SHIPPING_METHOD_PRICE,
-                    $shippingCost['id'],
+                    (string) $shippingCost['id'],
                     'currency'
                 ));
 
@@ -694,7 +694,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
                 $this->loggingService->addLogEntry(new UnsupportedShippingPriceLog(
                     $this->runId,
                     DefaultEntities::SHIPPING_METHOD_PRICE,
-                    $shippingCost['id'],
+                    (string) $shippingCost['id'],
                     $this->oldShippingMethod
                 ));
 
@@ -1080,7 +1080,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
 
         $countries = [];
         foreach ($ruleData['shippingCountries'] as $country) {
-            $country = $this->mappingService->getCountryUuid($country['countryID'], $country['countryiso'], $country['iso3'], $this->connectionId, $this->context);
+            $country = $this->mappingService->getCountryUuid((string) $country['countryID'], $country['countryiso'], $country['iso3'], $this->connectionId, $this->context);
 
             if ($country === null) {
                 continue;
@@ -1133,7 +1133,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $paymentMethodMapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::PAYMENT_METHOD,
-                $paymentMethodId,
+                (string) $paymentMethodId,
                 $this->context
             );
 
@@ -1189,7 +1189,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $categoryMapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::CATEGORY,
-                $categoryId,
+                (string) $categoryId,
                 $this->context
             );
 
