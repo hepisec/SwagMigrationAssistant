@@ -89,7 +89,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 $migrationContext->getRunUuid(),
                 $data['objecttype'],
                 DefaultEntities::TRANSLATION,
-                $data['id']
+                (string) $data['id']
             )
         );
 
@@ -124,7 +124,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $this->runId,
                     DefaultEntities::PRODUCT,
-                    $data['id'],
+                    (string) $data['id'],
                     DefaultEntities::TRANSLATION
                 )
             );
@@ -171,7 +171,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::TRANSLATION,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
@@ -209,7 +209,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $mapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::PRODUCT,
-            $data['ordernumber'],
+            (string) $data['ordernumber'],
             $this->context
         );
 
@@ -250,7 +250,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::TRANSLATION,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
@@ -295,7 +295,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $this->runId,
                     DefaultEntities::PRODUCT_MANUFACTURER,
-                    $data['id'],
+                    (string) $data['id'],
                     DefaultEntities::TRANSLATION
                 )
             );
@@ -315,7 +315,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::TRANSLATION,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
@@ -378,7 +378,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $this->runId,
                     DefaultEntities::UNIT,
-                    $data['id'],
+                    (string) $data['id'],
                     DefaultEntities::TRANSLATION
                 )
             );
@@ -398,7 +398,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::TRANSLATION,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
@@ -466,7 +466,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $this->runId,
                     DefaultEntities::CATEGORY,
-                    $data['id'],
+                    (string) $data['id'],
                     DefaultEntities::TRANSLATION
                 )
             );
@@ -493,7 +493,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::TRANSLATION,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
@@ -558,7 +558,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $this->runId,
                     DefaultEntities::PROPERTY_GROUP_OPTION,
-                    $data['id'],
+                    (string) $data['id'],
                     DefaultEntities::TRANSLATION
                 )
             );
@@ -638,7 +638,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $this->runId,
                     DefaultEntities::PROPERTY_GROUP,
-                    $data['id'],
+                    (string) $data['id'],
                     DefaultEntities::TRANSLATION
                 )
             );
@@ -658,7 +658,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::TRANSLATION,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
@@ -721,7 +721,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $this->runId,
                     DefaultEntities::PROPERTY_GROUP_OPTION,
-                    $data['id'],
+                    (string) $data['id'],
                     DefaultEntities::TRANSLATION
                 )
             );
@@ -741,7 +741,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::TRANSLATION,
-            $data['id'],
+            (string) $data['id'],
             $this->context
         );
         $propertyValueTranslation['id'] = $this->mainMapping['entityUuid'];
@@ -799,7 +799,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $this->runId,
                     DefaultEntities::PROPERTY_GROUP,
-                    $data['id'],
+                    (string) $data['id'],
                     DefaultEntities::TRANSLATION
                 )
             );
@@ -819,7 +819,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::TRANSLATION,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
@@ -934,7 +934,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 new InvalidUnserializedData(
                     $this->runId,
                     DefaultEntities::TRANSLATION,
-                    $data['id'],
+                    (string) $data['id'],
                     $entity,
                     $objectDataSerialized
                 )
@@ -960,7 +960,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $mapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::MEDIA,
-            $data['mediaId'],
+            (string) $data['mediaId'],
             $this->context
         );
 
@@ -969,7 +969,7 @@ abstract class TranslationConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $this->runId,
                     DefaultEntities::MEDIA,
-                    $data['mediaId'],
+                    (string) $data['mediaId'],
                     DefaultEntities::TRANSLATION
                 )
             );
@@ -991,7 +991,7 @@ abstract class TranslationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::TRANSLATION,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );

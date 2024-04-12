@@ -169,7 +169,7 @@ class ProductReader extends AbstractReader
     protected function buildIdentifierMappings(array $fetchedProducts): void
     {
         foreach ($fetchedProducts as $product) {
-            $this->productMapping->set($product['product_detail.id'], $product['product.id']);
+            $this->productMapping->set((string) $product['product_detail.id'], $product['product.id']);
         }
     }
 

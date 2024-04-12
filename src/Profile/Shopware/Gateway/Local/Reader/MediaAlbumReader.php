@@ -71,7 +71,7 @@ class MediaAlbumReader extends AbstractReader
             $albums[] = [$mediaAlbum];
             unset($mediaAlbums[$key]);
 
-            $childAlbums = $this->getChildAlbums($mediaAlbums, $mediaAlbum['id'], $locale);
+            $childAlbums = $this->getChildAlbums($mediaAlbums, (string) $mediaAlbum['id'], $locale);
 
             if (!empty($childAlbums)) {
                 $albums[] = $childAlbums;
@@ -98,7 +98,7 @@ class MediaAlbumReader extends AbstractReader
             $albums[] = [$mediaAlbum];
             unset($mediaAlbums[$key]);
 
-            $childAlbums = $this->getChildAlbums($mediaAlbums, $mediaAlbum['id'], $locale);
+            $childAlbums = $this->getChildAlbums($mediaAlbums, (string) $mediaAlbum['id'], $locale);
 
             if (!empty($childAlbums)) {
                 $albums[] = $childAlbums;

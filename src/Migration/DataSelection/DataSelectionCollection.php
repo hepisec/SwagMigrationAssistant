@@ -20,7 +20,7 @@ class DataSelectionCollection extends Collection
     {
         $this->sort(
             function (DataSelectionStruct $first, DataSelectionStruct $second) {
-                return $first->getPosition() <=> $second->getPosition();
+                return $first->getPosition() - $second->getPosition();
             }
         );
     }

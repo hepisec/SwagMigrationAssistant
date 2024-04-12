@@ -42,7 +42,7 @@ abstract class ProductPropertyRelationConverter extends ShopwareConverter
         $productMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::PRODUCT_CONTAINER,
-            $data['productId'],
+            (string) $data['productId'],
             $context
         );
 
@@ -50,7 +50,7 @@ abstract class ProductPropertyRelationConverter extends ShopwareConverter
             $productMapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::PRODUCT_MAIN,
-                $data['productId'],
+                (string) $data['productId'],
                 $context
             );
 
@@ -73,7 +73,7 @@ abstract class ProductPropertyRelationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::PRODUCT_PROPERTY_RELATION,
-            $data['identifier'],
+            (string) $data['identifier'],
             $context
         );
 
