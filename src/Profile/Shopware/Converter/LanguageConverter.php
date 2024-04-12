@@ -43,7 +43,7 @@ abstract class LanguageConverter extends ShopwareConverter
             $this->loggingService->addLogEntry(new EntityAlreadyExistsRunLog(
                 $migrationContext->getRunUuid(),
                 DefaultEntities::LANGUAGE,
-                $data['id']
+                (string) $data['id']
             ));
 
             return new ConvertStruct(null, $data);

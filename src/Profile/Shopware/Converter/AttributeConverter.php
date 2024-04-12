@@ -176,7 +176,7 @@ abstract class AttributeConverter extends Converter
                 ];
             } else {
                 $attributeData['label'] = [
-                    $locale => $data['configuration']['column_name'],
+                    $locale => $data['name'],
                 ];
             }
 
@@ -187,8 +187,12 @@ abstract class AttributeConverter extends Converter
             }
         }
 
-        if ($data['configuration']['position']) {
+        if (array_key_exists('position', $data['configuration']) && $data['configuration']['position']) {
             $attributeData['customFieldPosition'] = (int) $data['configuration']['position'];
+        }
+
+        if (!array_key_exists('column_type', $data['configuration'])) {
+            return [];
         }
 
         if ($data['configuration']['column_type'] === 'text' || $data['configuration']['column_type'] === 'string') {
@@ -268,7 +272,7 @@ abstract class AttributeConverter extends Converter
 
     private function getCustomFieldType(array $data): string
     {
-        if (isset($data['configuration'])) {
+        if (isset($data['configuration']['column_type'])) {
             switch ($data['configuration']['column_type']) {
                 case 'integer':
                     return 'int';

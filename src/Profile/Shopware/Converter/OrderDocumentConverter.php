@@ -204,7 +204,7 @@ abstract class OrderDocumentConverter extends ShopwareConverter
         if (!\in_array($data['key'], $knownTypes, true)) {
             $this->loggingService->addLogEntry(new DocumentTypeNotSupported(
                 $this->runId,
-                $data['id'],
+                (string) $data['id'],
                 $data['key']
             ));
 
@@ -231,7 +231,7 @@ abstract class OrderDocumentConverter extends ShopwareConverter
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::ORDER_DOCUMENT_MEDIA,
-            $data['id'],
+            (string) $data['id'],
             $this->context
         );
 

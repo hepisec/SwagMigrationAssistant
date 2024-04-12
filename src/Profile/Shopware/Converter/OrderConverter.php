@@ -106,7 +106,7 @@ abstract class OrderConverter extends ShopwareConverter
         MigrationContextInterface $migrationContext
     ): ConvertStruct {
         $this->generateChecksum($data);
-        $this->oldId = $data['id'];
+        $this->oldId = (string) $data['id'];
         $this->runId = $migrationContext->getRunUuid();
         $this->migrationContext = $migrationContext;
 
@@ -145,7 +145,7 @@ abstract class OrderConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::ORDER,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
@@ -163,7 +163,7 @@ abstract class OrderConverter extends ShopwareConverter
         $customerMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::CUSTOMER,
-            $data['userID'],
+            (string) $data['userID'],
             $this->context
         );
 
@@ -330,7 +330,7 @@ abstract class OrderConverter extends ShopwareConverter
             $mapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::SALES_CHANNEL,
-                $data['subshopID'],
+                (string) $data['subshopID'],
                 $this->context
             );
 
