@@ -21,12 +21,12 @@ class ShopCategoryRelation
     private string $categoryId;
 
     /**
-     * @param array<string, string> $relation
+     * @param array<string, mixed> $relation
      */
     public function __construct(array $relation)
     {
-        $this->shopId = $relation['shopId'];
-        $this->categoryId = $relation['categoryId'];
+        $this->shopId = (string) $relation['shopId'];
+        $this->categoryId = (string) $relation['categoryId'];
     }
 
     public function isCategory(string $categoryId): bool

@@ -123,8 +123,8 @@ abstract class ProductConverter extends ShopwareConverter
         $this->context = $context;
         $this->migrationContext = $migrationContext;
         $this->runId = $migrationContext->getRunUuid();
-        $this->oldProductId = $data['detail']['ordernumber'];
-        $this->mainProductId = $data['detail']['articleID'];
+        $this->oldProductId = (string) $data['detail']['ordernumber'];
+        $this->mainProductId = (string) $data['detail']['articleID'];
         $this->locale = $data['_locale'];
 
         $connection = $migrationContext->getConnection();
@@ -197,7 +197,7 @@ abstract class ProductConverter extends ShopwareConverter
         $containerMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::PRODUCT_CONTAINER,
-            $data['id'],
+            (string) $data['id'],
             $this->context
         );
         $containerUuid = $containerMapping['entityUuid'];
@@ -230,7 +230,7 @@ abstract class ProductConverter extends ShopwareConverter
                 $productMediaRelationMapping = $this->mappingService->getOrCreateMapping(
                     $this->connectionId,
                     DefaultEntities::PRODUCT_MEDIA,
-                    $media['id'],
+                    (string) $media['id'],
                     $this->context
                 );
                 $productMediaRelationUuid = $productMediaRelationMapping['entityUuid'];
@@ -279,7 +279,7 @@ abstract class ProductConverter extends ShopwareConverter
         $parentMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::PRODUCT_CONTAINER,
-            $data['detail']['articleID'],
+            (string) $data['detail']['articleID'],
             $this->context
         );
 
@@ -338,7 +338,7 @@ abstract class ProductConverter extends ShopwareConverter
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::PRODUCT_MAIN,
-            $data['detail']['articleID'],
+            (string) $data['detail']['articleID'],
             $this->context,
             null,
             null,
@@ -385,7 +385,7 @@ abstract class ProductConverter extends ShopwareConverter
         unset($data['prices']);
 
         if (isset($data['assets'])) {
-            $convertedMedia = $this->getMedia($data['assets'], $data['detail']['id'], $converted);
+            $convertedMedia = $this->getMedia($data['assets'], (string) $data['detail']['id'], $converted);
 
             if (!empty($convertedMedia['media'])) {
                 $converted['media'] = $convertedMedia['media'];
@@ -399,7 +399,7 @@ abstract class ProductConverter extends ShopwareConverter
         }
 
         if (isset($data['esdFiles'])) {
-            $esdMedia = $this->getEsdFiles($data['esdFiles'], $data['detail']['id'], $converted);
+            $esdMedia = $this->getEsdFiles($data['esdFiles'], (string) $data['detail']['id'], $converted);
             $converted['downloads'] = $esdMedia;
             unset($data['esdFiles']);
         }
@@ -673,7 +673,7 @@ abstract class ProductConverter extends ShopwareConverter
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::PRODUCT_MANUFACTURER,
-            $data['id'],
+            (string) $data['id'],
             $this->context
         );
         $manufacturer = [];
@@ -749,7 +749,7 @@ abstract class ProductConverter extends ShopwareConverter
             $mapping = $this->mappingService->getOrCreateMapping(
                 $this->connectionId,
                 DefaultEntities::TAX,
-                $taxData['id'],
+                (string) $taxData['id'],
                 $this->context
             );
             $taxUuid = $mapping['entityUuid'];
@@ -774,7 +774,7 @@ abstract class ProductConverter extends ShopwareConverter
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::UNIT,
-            $data['id'],
+            (string) $data['id'],
             $this->context
         );
         $unit['id'] = $mapping['entityUuid'];
@@ -961,7 +961,7 @@ abstract class ProductConverter extends ShopwareConverter
             $mapping = $this->mappingService->getOrCreateMapping(
                 $this->connectionId,
                 DefaultEntities::MEDIA,
-                $mediaData['media']['id'],
+                (string) $mediaData['media']['id'],
                 $this->context
             );
             $newMedia['id'] = $mapping['entityUuid'];
@@ -989,7 +989,7 @@ abstract class ProductConverter extends ShopwareConverter
             $albumMapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::MEDIA_FOLDER,
-                $mediaData['media']['albumID'],
+                (string) $mediaData['media']['albumID'],
                 $this->context
             );
 
@@ -1068,7 +1068,7 @@ abstract class ProductConverter extends ShopwareConverter
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::MEDIA,
-            $media['id'],
+            (string) $media['id'],
             $this->context
         );
         $manufacturerMedia = [];
@@ -1084,7 +1084,7 @@ abstract class ProductConverter extends ShopwareConverter
         $albumMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::MEDIA_FOLDER,
-            $media['albumID'],
+            (string) $media['albumID'],
             $this->context
         );
 
@@ -1219,7 +1219,7 @@ abstract class ProductConverter extends ShopwareConverter
             $customerGroupMapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::CUSTOMER_GROUP,
-                $price['customergroup']['id'],
+                (string) $price['customergroup']['id'],
                 $this->context
             );
 
@@ -1412,7 +1412,7 @@ abstract class ProductConverter extends ShopwareConverter
             $mapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::CATEGORY,
-                $category['id'],
+                (string) $category['id'],
                 $this->context
             );
 

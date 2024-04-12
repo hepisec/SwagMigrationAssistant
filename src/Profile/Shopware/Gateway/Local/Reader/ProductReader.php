@@ -151,7 +151,7 @@ class ProductReader extends AbstractReader
                 }
             }
 
-            $product['shops'] = $productVisibility->getShops($product['id']);
+            $product['shops'] = $productVisibility->getShops((string) $product['id']);
         }
         unset(
             $product, $categories,
