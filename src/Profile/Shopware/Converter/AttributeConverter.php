@@ -46,7 +46,7 @@ abstract class AttributeConverter extends Converter
             $context
         );
         $converted['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $connectionName = $this->connectionName;
         $connectionName = \str_replace(' ', '', $connectionName);
@@ -65,7 +65,7 @@ abstract class AttributeConverter extends Converter
             $this->getCustomFieldEntityName() . 'CustomFieldSetRelation',
             $context
         );
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $converted['relations'] = [
             [

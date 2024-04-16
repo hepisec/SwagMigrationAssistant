@@ -150,7 +150,7 @@ abstract class MediaConverter extends ShopwareConverter
             $this->context
         );
         $localeTranslation['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $languageUuid = $this->mappingService->getLanguageUuid($this->connectionId, $this->locale, $this->context);
 

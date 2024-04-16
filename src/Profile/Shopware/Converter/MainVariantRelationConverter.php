@@ -25,7 +25,7 @@ abstract class MainVariantRelationConverter extends ShopwareConverter
 
     public function getSourceIdentifier(array $data): string
     {
-        return $data['id'];
+        return (string) $data['id'];
     }
 
     public function convert(array $data, Context $context, MigrationContextInterface $migrationContext): ConvertStruct
@@ -45,7 +45,7 @@ abstract class MainVariantRelationConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::MAIN_VARIANT_RELATION,
-            $data['id'],
+            (string) $data['id'],
             $context,
             $this->checksum
         );
@@ -53,25 +53,25 @@ abstract class MainVariantRelationConverter extends ShopwareConverter
         $mainProductMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::PRODUCT_CONTAINER,
-            $data['id'],
+            (string) $data['id'],
             $context
         );
 
         $variantProductMapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::PRODUCT,
-            $data['ordernumber'],
+            (string) $data['ordernumber'],
             $context
         );
 
         if ($mainProductMapping === null) {
-            $this->addAssociationRequiredLog(DefaultEntities::PRODUCT_CONTAINER, $data['id']);
+            $this->addAssociationRequiredLog(DefaultEntities::PRODUCT_CONTAINER, (string) $data['id']);
 
             return new ConvertStruct(null, $data);
         }
 
         if ($variantProductMapping === null) {
-            $this->addAssociationRequiredLog(DefaultEntities::PRODUCT, $data['ordernumber']);
+            $this->addAssociationRequiredLog(DefaultEntities::PRODUCT, (string) $data['ordernumber']);
 
             return new ConvertStruct(null, $data);
         }
@@ -95,7 +95,7 @@ abstract class MainVariantRelationConverter extends ShopwareConverter
 
         $this->updateMainMapping($migrationContext, $context);
 
-        return new ConvertStruct($converted, $returnData, $this->mainMapping['id'] ?? null);
+        return new ConvertStruct($converted, $returnData, $this->mainMapping['id'] ? (string) $this->mainMapping['id'] : null);
     }
 
     private function addAssociationRequiredLog(string $requiredEntity, string $id): void

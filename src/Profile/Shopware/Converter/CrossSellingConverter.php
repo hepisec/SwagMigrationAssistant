@@ -52,19 +52,19 @@ abstract class CrossSellingConverter extends ShopwareConverter
         $crossSellingMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             $data['type'],
-            $data['articleID'],
+            (string) $data['articleID'],
             $context,
             $this->checksum
         );
 
         $converted['id'] = $crossSellingMapping['entityUuid'];
 
-        $sourceProductMapping = $this->getProductMapping($data['articleID']);
+        $sourceProductMapping = $this->getProductMapping((string) $data['articleID']);
         if ($sourceProductMapping === null) {
             $this->loggingService->addLogEntry(new AssociationRequiredMissingLog(
                 $this->runId,
                 DefaultEntities::PRODUCT,
-                $data['articleID'],
+                (string) $data['articleID'],
                 $data['type']
             ));
 
@@ -72,12 +72,12 @@ abstract class CrossSellingConverter extends ShopwareConverter
         }
         $this->mappingIds[] = $sourceProductMapping['id'];
 
-        $relatedProductMapping = $this->getProductMapping($data['relatedarticle']);
+        $relatedProductMapping = $this->getProductMapping((string) $data['relatedarticle']);
         if ($relatedProductMapping === null) {
             $this->loggingService->addLogEntry(new AssociationRequiredMissingLog(
                 $this->runId,
                 DefaultEntities::PRODUCT,
-                $data['relatedarticle'],
+                (string) $data['relatedarticle'],
                 $data['type']
             ));
 

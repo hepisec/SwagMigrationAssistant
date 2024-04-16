@@ -33,7 +33,7 @@ abstract class MediaFolderConverter extends ShopwareConverter
         $this->generateChecksum($data);
         $this->context = $context;
         $this->mainLocale = $data['_locale'];
-        $this->oldId = $data['id'];
+        $this->oldId = (string) $data['id'];
         unset($data['_locale']);
 
         $connection = $migrationContext->getConnection();
@@ -46,7 +46,7 @@ abstract class MediaFolderConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::MEDIA_FOLDER,
-            $data['id'],
+            (string) $data['id'],
             $this->context,
             $this->checksum
         );
@@ -62,7 +62,7 @@ abstract class MediaFolderConverter extends ShopwareConverter
             $parentMapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::MEDIA_FOLDER,
-                $data['parentID'],
+                (string) $data['parentID'],
                 $this->context
             );
 
@@ -135,11 +135,11 @@ abstract class MediaFolderConverter extends ShopwareConverter
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::MEDIA_FOLDER_CONFIGURATION,
-            $setting['id'],
+            (string) $setting['id'],
             $this->context
         );
         $configuration['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $this->convertValue($configuration, 'createThumbnails', $setting, 'create_thumbnails', self::TYPE_BOOLEAN);
         $this->convertValue($configuration, 'thumbnailQuality', $setting, 'thumbnail_quality', self::TYPE_INTEGER);
@@ -170,7 +170,7 @@ abstract class MediaFolderConverter extends ShopwareConverter
                         $this->context
                     );
                     $uuid = $mapping['entityUuid'];
-                    $this->mappingIds[] = $mapping['id'];
+                    $this->mappingIds[] = (string) $mapping['id'];
                 }
 
                 $thumbnailSize['id'] = $uuid;

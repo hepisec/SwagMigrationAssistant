@@ -232,7 +232,7 @@ abstract class NumberRangeConverter extends ShopwareConverter
             $numberRangeSalesChannel['salesChannelId'] = $saleChannelId;
             $numberRangeSalesChannel['numberRangeTypeId'] = $converted['typeId'];
             $numberRangeSalesChannels[] = $numberRangeSalesChannel;
-            $this->mappingIds[] = $mapping['id'];
+            $this->mappingIds[] = (string) $mapping['id'];
         }
 
         $converted['numberRangeSalesChannels'] = $numberRangeSalesChannels;

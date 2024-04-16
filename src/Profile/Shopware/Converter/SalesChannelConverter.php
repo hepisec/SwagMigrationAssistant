@@ -265,7 +265,7 @@ abstract class SalesChannelConverter extends ShopwareConverter
             $this->context
         );
         $localeTranslation['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $languageUuid = $this->mappingService->getLanguageUuid($this->connectionId, $this->mainLocale, $this->context);
 
         if ($languageUuid !== null) {
@@ -428,7 +428,7 @@ abstract class SalesChannelConverter extends ShopwareConverter
                 null,
                 $this->mainMapping['entityUuid']
             );
-            $this->mappingIds[] = $mapping['id'];
+            $this->mappingIds[] = (string) $mapping['id'];
         }
     }
 }

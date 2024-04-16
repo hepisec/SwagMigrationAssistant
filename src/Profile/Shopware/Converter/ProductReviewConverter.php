@@ -91,7 +91,7 @@ abstract class ProductReviewConverter extends ShopwareConverter
             }
         }
         $converted['productId'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         unset($data['articleID']);
 
         if (isset($data['email'])) {
@@ -104,7 +104,7 @@ abstract class ProductReviewConverter extends ShopwareConverter
 
             if ($mapping !== null) {
                 $converted['customerId'] = $mapping['entityUuid'];
-                $this->mappingIds[] = $mapping['id'];
+                $this->mappingIds[] = (string) $mapping['id'];
             }
         }
         $this->convertValue($converted, 'externalEmail', $data, 'email');
@@ -131,7 +131,7 @@ abstract class ProductReviewConverter extends ShopwareConverter
             return new ConvertStruct(null, $originalData);
         }
         $converted['salesChannelId'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         unset($data['shop_id'], $data['mainShopId']);
 
         $converted['languageId'] = $this->mappingService->getLanguageUuid(

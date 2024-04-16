@@ -71,7 +71,7 @@ abstract class Converter implements ConverterInterface
         $this->mappingService->updateMapping(
             $connection->getId(),
             $dataSet::getEntity(),
-            $this->mainMapping['oldIdentifier'],
+            (string) $this->mainMapping['oldIdentifier'],
             $this->mainMapping,
             $context
         );

@@ -92,7 +92,7 @@ abstract class PropertyGroupOptionConverter extends ShopwareConverter
             \hash('md5', \mb_strtolower($data['name'] . '_' . $data['group']['name'])),
             $context
         );
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $propertyGroupMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -147,7 +147,7 @@ abstract class PropertyGroupOptionConverter extends ShopwareConverter
             $this->context
         );
         $newMedia['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         if (empty($data['media']['name'])) {
             $data['media']['name'] = $newMedia['id'];
@@ -207,7 +207,7 @@ abstract class PropertyGroupOptionConverter extends ShopwareConverter
             $this->context
         );
         $localeTranslation['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $languageUuid = $this->mappingService->getLanguageUuid($this->connectionId, $this->locale, $this->context);
 
@@ -228,7 +228,7 @@ abstract class PropertyGroupOptionConverter extends ShopwareConverter
             null,
             $converted['id']
         );
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -239,7 +239,7 @@ abstract class PropertyGroupOptionConverter extends ShopwareConverter
             null,
             $converted['group']['id']
         );
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -255,7 +255,7 @@ abstract class PropertyGroupOptionConverter extends ShopwareConverter
             \hash('md5', \mb_strtolower($data['group']['name'] . '_' . $data['type'])),
             $this->context
         );
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
     }
 
     /**

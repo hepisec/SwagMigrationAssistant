@@ -256,7 +256,7 @@ abstract class CategoryConverter extends ShopwareConverter
             $this->context
         );
         $localeTranslation['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         try {
             $languageUuid = $this->mappingService->getLanguageUuid($this->connectionId, $data['_locale'], $this->context);
@@ -293,7 +293,7 @@ abstract class CategoryConverter extends ShopwareConverter
 
         $categoryMedia = [];
         $categoryMedia['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         if (empty($media['name'])) {
             $media['name'] = $categoryMedia['id'];
@@ -357,7 +357,7 @@ abstract class CategoryConverter extends ShopwareConverter
             $this->context
         );
         $localeTranslation['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $languageUuid = $this->mappingService->getLanguageUuid($this->connectionId, $this->locale, $this->context);
 

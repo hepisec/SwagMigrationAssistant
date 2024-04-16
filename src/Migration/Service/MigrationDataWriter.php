@@ -157,7 +157,7 @@ class MigrationDataWriter implements MigrationDataWriterInterface
                 $migrationContext->getRunUuid(),
                 $entityName,
                 $writeErrors[$index],
-                $dataId
+                (string) $dataId
             ));
 
             ++$index;

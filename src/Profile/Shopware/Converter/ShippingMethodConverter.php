@@ -278,7 +278,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $localeTranslation['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $languageUuid = $this->mappingService->getLanguageUuid($this->connectionId, $this->mainLocale, $this->context);
 
@@ -319,7 +319,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $priceRuleUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -328,7 +328,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $orContainerUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -337,7 +337,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $andContainerUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -346,7 +346,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $conditionUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $rule = [
             'id' => $priceRuleUuid,
@@ -420,7 +420,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $priceRuleUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -429,7 +429,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $orContainerUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -438,7 +438,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $andContainerUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -447,7 +447,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $conditionUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $rule = [
             'id' => $priceRuleUuid,
@@ -541,7 +541,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $priceRuleUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -550,7 +550,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $orContainerUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -559,7 +559,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $andContainerUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $mapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
@@ -568,7 +568,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
             $this->context
         );
         $conditionUuid = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $rule = [
             'id' => $priceRuleUuid,
@@ -659,7 +659,7 @@ abstract class ShippingMethodConverter extends ShopwareConverter
                 $this->context
             );
             $cost['id'] = $mapping['entityUuid'];
-            $this->mappingIds[] = $mapping['id'];
+            $this->mappingIds[] = (string) $mapping['id'];
 
             $cost['calculation'] = $calculationType;
             $cost['shippingMethodId'] = $this->oldShippingMethod;

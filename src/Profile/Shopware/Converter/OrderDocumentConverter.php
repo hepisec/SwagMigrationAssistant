@@ -217,7 +217,7 @@ abstract class OrderDocumentConverter extends ShopwareConverter
             $data['key'],
             $this->context
         );
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $documentType['id'] = $mapping['entityUuid'];
         $documentType['name'] = $data['name'];
@@ -237,7 +237,7 @@ abstract class OrderDocumentConverter extends ShopwareConverter
 
         $newMedia = [];
         $newMedia['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         $this->mediaFileService->saveMediaFile(
             [

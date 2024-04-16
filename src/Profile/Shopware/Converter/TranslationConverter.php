@@ -132,7 +132,7 @@ abstract class TranslationConverter extends ShopwareConverter
             return new ConvertStruct(null, $sourceData);
         }
         $product['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $product['entityDefinitionClass'] = ProductDefinition::class;
 
         $objectData = $this->unserializeTranslation($data, DefaultEntities::PRODUCT_TRANSLATION);
@@ -226,7 +226,7 @@ abstract class TranslationConverter extends ShopwareConverter
             return new ConvertStruct(null, $sourceData);
         }
         $product['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $product['entityDefinitionClass'] = ProductDefinition::class;
 
         $objectData = $this->unserializeTranslation($data, DefaultEntities::PRODUCT_TRANSLATION);
@@ -303,7 +303,7 @@ abstract class TranslationConverter extends ShopwareConverter
             return new ConvertStruct(null, $sourceData);
         }
         $manufacturer['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $manufacturer['entityDefinitionClass'] = ProductManufacturerDefinition::class;
 
         $objectData = $this->unserializeTranslation($data, DefaultEntities::PRODUCT_MANUFACTURER_TRANSLATION);
@@ -386,7 +386,7 @@ abstract class TranslationConverter extends ShopwareConverter
             return new ConvertStruct(null, $sourceData);
         }
         $unit['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $unit['entityDefinitionClass'] = UnitDefinition::class;
 
         $objectData = $this->unserializeTranslation($data, DefaultEntities::UNIT_TRANSLATION);
@@ -474,7 +474,7 @@ abstract class TranslationConverter extends ShopwareConverter
             return new ConvertStruct(null, $sourceData);
         }
         $category['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $category['entityDefinitionClass'] = CategoryDefinition::class;
 
         $objectData = $this->unserializeTranslation($data, DefaultEntities::CATEGORY_TRANSLATION);
@@ -566,7 +566,7 @@ abstract class TranslationConverter extends ShopwareConverter
             return new ConvertStruct(null, $sourceData);
         }
         $configuratorOption['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $configuratorOption['entityDefinitionClass'] = PropertyGroupOptionDefinition::class;
 
         $objectData = $this->unserializeTranslation($data, DefaultEntities::PROPERTY_GROUP_OPTION_TRANSLATION);
@@ -646,7 +646,7 @@ abstract class TranslationConverter extends ShopwareConverter
             return new ConvertStruct(null, $sourceData);
         }
         $configuratorOptionGroup['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $configuratorOptionGroup['entityDefinitionClass'] = PropertyGroupDefinition::class;
 
         $objectData = $this->unserializeTranslation($data, DefaultEntities::PROPERTY_GROUP_TRANSLATION);
@@ -729,7 +729,7 @@ abstract class TranslationConverter extends ShopwareConverter
             return new ConvertStruct(null, $sourceData);
         }
         $propertyValue['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $propertyValue['entityDefinitionClass'] = PropertyGroupOptionDefinition::class;
 
         $objectData = $this->unserializeTranslation($data, DefaultEntities::PROPERTY_GROUP_OPTION_TRANSLATION);
@@ -807,7 +807,7 @@ abstract class TranslationConverter extends ShopwareConverter
             return new ConvertStruct(null, $sourceData);
         }
         $propertyOption['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $propertyOption['entityDefinitionClass'] = PropertyGroupDefinition::class;
 
         $objectData = $this->unserializeTranslation($data, DefaultEntities::PROPERTY_GROUP_TRANSLATION);
@@ -887,7 +887,7 @@ abstract class TranslationConverter extends ShopwareConverter
             );
 
             if ($mapping !== null) {
-                $this->mappingIds[] = $mapping['id'];
+                $this->mappingIds[] = (string) $mapping['id'];
 
                 if (isset($mapping['additionalData']['columnType'])
                     && \in_array($mapping['additionalData']['columnType'], ['text', 'string'], true)
@@ -979,7 +979,7 @@ abstract class TranslationConverter extends ShopwareConverter
         unset($data['objectkey'], $data['mediaId']);
 
         $media['id'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         $media['entityDefinitionClass'] = MediaDefinition::class;
 
         $objectData = $this->unserializeTranslation($data, DefaultEntities::MEDIA);

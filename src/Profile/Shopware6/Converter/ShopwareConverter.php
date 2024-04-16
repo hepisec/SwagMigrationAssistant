@@ -88,7 +88,7 @@ abstract class ShopwareConverter extends Converter
             return null;
         }
 
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         return $mapping['entityUuid'];
     }
@@ -108,7 +108,7 @@ abstract class ShopwareConverter extends Converter
             $newIdentifier
         );
 
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
 
         return $mapping['entityUuid'];
     }

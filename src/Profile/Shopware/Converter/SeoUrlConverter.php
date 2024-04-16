@@ -68,7 +68,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
             return new ConvertStruct(null, $originalData);
         }
         $converted['salesChannelId'] = $mapping['entityUuid'];
-        $this->mappingIds[] = $mapping['id'];
+        $this->mappingIds[] = (string) $mapping['id'];
         unset($data['subshopID']);
 
         $converted['languageId'] = $this->mappingService->getLanguageUuid(
@@ -124,7 +124,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
             $converted['foreignKey'] = $mapping['entityUuid'];
             $converted['routeName'] = self::ROUTE_NAME_PRODUCT;
             $converted['pathInfo'] = '/detail/' . $mapping['entityUuid'];
-            $this->mappingIds[] = $mapping['id'];
+            $this->mappingIds[] = (string) $mapping['id'];
         } elseif ($data['type'] === self::TYPE_CATEGORY && isset($data['typeId'])) {
             $mapping = $this->mappingService->getMapping(
                 $this->connectionId,
@@ -148,7 +148,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
             $converted['foreignKey'] = $mapping['entityUuid'];
             $converted['routeName'] = self::ROUTE_NAME_NAVIGATION;
             $converted['pathInfo'] = '/navigation/' . $mapping['entityUuid'];
-            $this->mappingIds[] = $mapping['id'];
+            $this->mappingIds[] = (string) $mapping['id'];
         } else {
             $this->loggingService->addLogEntry(
                 new UnsupportedSeoUrlType(
