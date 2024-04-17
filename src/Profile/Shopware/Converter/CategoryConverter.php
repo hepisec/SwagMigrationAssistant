@@ -52,7 +52,7 @@ abstract class CategoryConverter extends ShopwareConverter
                 continue;
             }
 
-            $mediaUuids[] = $data['media']['id'];
+            $mediaUuids[] = (string) $data['media']['id'];
         }
 
         return $mediaUuids;
@@ -109,7 +109,7 @@ abstract class CategoryConverter extends ShopwareConverter
             if ($parentMapping === null) {
                 throw MigrationException::parentEntityForChildNotFound(DefaultEntities::CATEGORY, $this->oldCategoryId);
             }
-            $this->mappingIds[] = $parentMapping['id'];
+            $this->mappingIds[] = (string) $parentMapping['id'];
             $converted['parentId'] = $parentMapping['entityUuid'];
             unset($parentMapping);
         // get last root category as previous sibling
@@ -132,7 +132,7 @@ abstract class CategoryConverter extends ShopwareConverter
 
             if ($previousSiblingMapping !== null) {
                 $converted['afterCategoryId'] = $previousSiblingMapping['entityUuid'];
-                $this->mappingIds[] = $previousSiblingMapping['id'];
+                $this->mappingIds[] = (string) $previousSiblingMapping['id'];
             }
         }
         unset($data['previousSiblingId'], $data['categoryPosition'], $previousSiblingMapping);
@@ -222,7 +222,7 @@ abstract class CategoryConverter extends ShopwareConverter
 
         $this->updateMainMapping($migrationContext, $context);
 
-        return new ConvertStruct($converted, $returnData, $this->mainMapping['id'] ?? null);
+        return new ConvertStruct($converted, $returnData, $this->mainMapping['id'] ? (string) $this->mainMapping['id'] : null);
     }
 
     /**
@@ -261,7 +261,7 @@ abstract class CategoryConverter extends ShopwareConverter
         try {
             $languageUuid = $this->mappingService->getLanguageUuid($this->connectionId, $data['_locale'], $this->context);
         } catch (\Throwable $exception) {
-            $this->mappingService->deleteMapping($converted['id'], $this->connectionId, $this->context);
+            $this->mappingService->deleteMapping((string) $converted['id'], $this->connectionId, $this->context);
 
             throw $exception;
         }
@@ -296,7 +296,7 @@ abstract class CategoryConverter extends ShopwareConverter
         $this->mappingIds[] = (string) $mapping['id'];
 
         if (empty($media['name'])) {
-            $media['name'] = $categoryMedia['id'];
+            $media['name'] = (string) $categoryMedia['id'];
         }
 
         $this->mediaFileService->saveMediaFile(
@@ -323,7 +323,7 @@ abstract class CategoryConverter extends ShopwareConverter
 
         if ($albumMapping !== null) {
             $categoryMedia['mediaFolderId'] = $albumMapping['entityUuid'];
-            $this->mappingIds[] = $albumMapping['id'];
+            $this->mappingIds[] = (string) $albumMapping['id'];
         }
 
         return $categoryMedia;

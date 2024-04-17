@@ -23,7 +23,7 @@ abstract class AttributeConverter extends Converter
 
     public function getSourceIdentifier(array $data): string
     {
-        return $data['name'];
+        return (string) $data['name'];
     }
 
     public function convert(array $data, Context $context, MigrationContextInterface $migrationContext): ConvertStruct
@@ -82,7 +82,7 @@ abstract class AttributeConverter extends Converter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             $migrationContext->getDataSet()::getEntity(),
-            $data['name'],
+            (string) $data['name'],
             $context,
             $this->checksum,
             $additionalData
@@ -110,7 +110,7 @@ abstract class AttributeConverter extends Converter
 
         $this->updateMainMapping($migrationContext, $context);
 
-        return new ConvertStruct($converted, $data, $this->mainMapping['id']);
+        return new ConvertStruct($converted, $data, (string) $this->mainMapping['id']);
     }
 
     abstract protected function getCustomFieldEntityName(): string;
