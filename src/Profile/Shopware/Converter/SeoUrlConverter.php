@@ -41,7 +41,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $this->connectionId,
             DefaultEntities::SEO_URL,
-            $data['id'],
+            (string) $data['id'],
             $context,
             $this->checksum
         );
@@ -51,7 +51,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
         $mapping = $this->mappingService->getMapping(
             $this->connectionId,
             DefaultEntities::SALES_CHANNEL,
-            $data['subshopID'],
+            (string) $data['subshopID'],
             $context
         );
 
@@ -60,7 +60,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
                 new AssociationRequiredMissingLog(
                     $migrationContext->getRunUuid(),
                     DefaultEntities::SALES_CHANNEL,
-                    $data['subshopID'],
+                    (string) $data['subshopID'],
                     DefaultEntities::SEO_URL
                 )
             );
@@ -95,7 +95,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
             $mapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::PRODUCT_MAIN,
-                $data['typeId'],
+                (string) $data['typeId'],
                 $context
             );
 
@@ -103,7 +103,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
                 $mapping = $this->mappingService->getMapping(
                     $this->connectionId,
                     DefaultEntities::PRODUCT_CONTAINER,
-                    $data['typeId'],
+                    (string) $data['typeId'],
                     $context
                 );
 
@@ -112,7 +112,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
                         new AssociationRequiredMissingLog(
                             $migrationContext->getRunUuid(),
                             DefaultEntities::PRODUCT,
-                            $data['typeId'],
+                            (string) $data['typeId'],
                             DefaultEntities::SEO_URL
                         )
                     );
@@ -129,7 +129,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
             $mapping = $this->mappingService->getMapping(
                 $this->connectionId,
                 DefaultEntities::CATEGORY,
-                $data['typeId'],
+                (string) $data['typeId'],
                 $context
             );
 
@@ -138,7 +138,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
                     new AssociationRequiredMissingLog(
                         $migrationContext->getRunUuid(),
                         DefaultEntities::CATEGORY,
-                        $data['typeId'],
+                        (string) $data['typeId'],
                         DefaultEntities::SEO_URL
                     )
                 );
@@ -155,7 +155,7 @@ abstract class SeoUrlConverter extends ShopwareConverter
                     $migrationContext->getRunUuid(),
                     $data['type'],
                     DefaultEntities::SEO_URL,
-                    $originalData['id']
+                    (string) $originalData['id']
                 )
             );
 
@@ -173,6 +173,6 @@ abstract class SeoUrlConverter extends ShopwareConverter
 
         $this->updateMainMapping($migrationContext, $context);
 
-        return new ConvertStruct($converted, $data, $this->mainMapping['id']);
+        return new ConvertStruct($converted, $data, (string) $this->mainMapping['id']);
     }
 }

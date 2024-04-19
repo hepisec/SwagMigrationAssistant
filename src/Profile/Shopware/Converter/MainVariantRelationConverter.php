@@ -76,8 +76,8 @@ abstract class MainVariantRelationConverter extends ShopwareConverter
             return new ConvertStruct(null, $data);
         }
 
-        $this->mappingIds[] = $mainProductMapping['id'];
-        $this->mappingIds[] = $variantProductMapping['id'];
+        $this->mappingIds[] = (string) $mainProductMapping['id'];
+        $this->mappingIds[] = (string) $variantProductMapping['id'];
 
         $converted = [];
         $converted['id'] = $mainProductMapping['entityUuid'];
